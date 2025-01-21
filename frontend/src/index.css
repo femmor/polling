@@ -3,3 +3,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        background-color: #fff;
+        overflow-x: hidden;
+    }
+}
+
+@layer components {
+    .input-box {
+        @apply w-full flex justify-between gap-3 text-sm text-black bg-slate-100 px-4 py-3 mb-4 mt-3 border border-slate-200 outline-none
+    }
+}

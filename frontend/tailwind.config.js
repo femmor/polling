@@ -6,6 +6,11 @@ export default {
       colors: {
         primary: "#06b6d4",
         secondary: "#EF863E",
+      },
+      backgroundImage: {
+        "auth-bg-img": "url('/assets/images/auth-img.png')",
+        "profile-bg-img": "url('/assets/images/profile-bg.png')",
+        
       }
     },
   },
