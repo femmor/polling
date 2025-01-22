@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import AuthInput from "src/components/input/AuthInput"
 import ProfilePhotoSelector from "src/components/input/ProfilePhotoSelector"
 import AuthLayout from "src/components/layout/AuthLayout"
@@ -12,20 +12,29 @@ const SignUpForm = () => {
   const [password, setPassword] = useState<string>("")
   const [confirmPassword, setConfirmPassword] = useState<string>("")
   const [error, setError] = useState<string>("")
-  const [profileImage, setProfileImage] = useState<string>("")
+  const [profileImage, setProfileImage] = useState<File | null>(null)
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!email || !password || !confirmPassword) {
-      setError("Please fill in all fields")
+    if (!fullName) {
+      setError("Please enter your full name")
       return
     }
     
     if (!validate(email)) {
       setError("Please enter a valid email address")
+      return;
+    }
+    if (!username) {
+      setError("Please enter a username")
+      return;
+    }
+
+    if (password === "") {
+      setError("Please enter a password")
       return;
     }
 
@@ -49,57 +58,73 @@ const SignUpForm = () => {
         </p>
 
         <form onSubmit={handleRegister}>
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-2">
           <AuthInput
+            id="fullName"
             value={fullName}
+            name="fullName"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setFullName(e.target.value)
             }
-            placeholder="Full Name"
+            placeholder="John Doe"
             label="Full Name"
             type="text"
           />
 
           <AuthInput
+            id="username"
             value={username}
+            name="username"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setUsername(e.target.value)
             }
-            placeholder="Username"
+            placeholder="@"
             label="Username"
             type="text"
+            autoComplete="username"
           />
 
           <AuthInput
+            id="email"
             value={email}
+            name="email"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
-            placeholder="Email Address"
+            placeholder="john@example.com"
             label="Email"
             type="email"
+            autoComplete="email"
           />
           <AuthInput
+            id="password"
             value={password}
+            name="password"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }
-            placeholder="Password"
+            placeholder="Min 8 characters"
             label="Password"
             type="password"
           />
           <AuthInput
+            id="confirmPassword"
             value={confirmPassword}
+            name="confirmPassword"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setConfirmPassword(e.target.value)
             }
-            placeholder="Confirm Password"
+            placeholder="Min 8 characters"
             label="Confirm Password"
             type="password"
           />
-          <ProfilePhotoSelector 
+          <ProfilePhotoSelector
+            id="profileImage"
             image={profileImage}
             setImage={setProfileImage}
           />
+          </div>
+          
 
           {error && <p className="text-red-600 text-xs pb-2.5">{error}</p>}
 

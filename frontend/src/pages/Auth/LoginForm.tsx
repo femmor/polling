@@ -46,16 +46,21 @@ const LoginForm = () => {
 
         <form onSubmit={handleLogin}>
           <AuthInput
+            id="email"
             value={email}
+            name="email"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setEmail(e.target.value)
             }
             placeholder="Email Address"
             label="Email"
             type="email"
+            autoComplete="email"
           />
           <AuthInput
+            id="password"
             value={password}
+            name="password"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setPassword(e.target.value)
             }

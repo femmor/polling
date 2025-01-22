@@ -6,6 +6,8 @@ export default {
       colors: {
         primary: "#06b6d4",
         secondary: "#EF863E",
+        tertiary: "#F3F4F6",
+        danger: "#EF4444",
       },
       backgroundImage: {
         "auth-bg-img": "url('/assets/images/auth-img.png')",
